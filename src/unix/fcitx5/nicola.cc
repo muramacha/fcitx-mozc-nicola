@@ -56,7 +56,7 @@ const std::map<std::set<uint32_t>, const char*> NicolaKeymapUS = {
     {{'c'}, "す"}, {{LeftNicolaKey, 'c'}, "ろ"}, {{RightNicolaKey, 'c'}, "ず"},
     {{'v'}, "ふ"}, {{LeftNicolaKey, 'v'}, "や"}, {{RightNicolaKey, 'v'}, "ぶ"},
     {{'b'}, "へ"}, {{LeftNicolaKey, 'b'}, "ぃ"}, {{RightNicolaKey, 'b'}, "べ"},
-    {{'n'}, "め"},                               {{RightNicolaKey, 'n'}, "ぬ"},
+    {{'n'}, "め"}, {{LeftNicolaKey, 'n'}, "ぷ"}, {{RightNicolaKey, 'n'}, "ぬ"},
     {{'m'}, "そ"}, {{LeftNicolaKey, 'm'}, "ぞ"}, {{RightNicolaKey, 'm'}, "ゆ"},
     {{','}, "ね"}, {{LeftNicolaKey, ','}, "ぺ"}, {{RightNicolaKey, ','}, "む"},
     {{'.'}, "ほ"}, {{LeftNicolaKey, '.'}, "ぼ"}, {{RightNicolaKey, '.'}, "わ"},
