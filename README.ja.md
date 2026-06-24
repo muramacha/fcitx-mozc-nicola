@@ -10,10 +10,10 @@
 ----------------------
 1. [最新のリリース](https://github.com/muramacha/fcitx-mozc-nicola/releases)からファイルたちをダウンロードし、展開してください。
 
-2. ご自身のシステムにおける`fcitx5-mozc.so`と`mozc_server`のインストール先を確認してください。
-例えば、，
-**Ubuntu / Debian:** `/usr/lib/x86_64-linux-gnu/fcitx5/` と `/usr/lib/mozc/`
-**Arch Linux:** `/usr/lib/fcitx5/` と `/usr/lib/mozc/`
+2. ご自身のシステムにおける`fcitx5-mozc.so`と`mozc_server`のインストール先を確認してください。<BR>
+例:<BR>
+**Ubuntu / Debian:** `/usr/lib/x86_64-linux-gnu/fcitx5/` と `/usr/lib/mozc/`<BR>
+**Arch Linux:** `/usr/lib/fcitx5/` と `/usr/lib/mozc/`<BR>
 
 3. 必要に応じて名前を変更し、ご自身のシステムにあったパスにファイルを配置してください。
 ```bash
