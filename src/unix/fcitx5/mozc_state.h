@@ -43,6 +43,8 @@
 #include "protocol/config.pb.h"
 #include "unix/fcitx5/mozc_client_interface.h"
 
+#include "unix/fcitx5/nicola.h"
+
 namespace fcitx {
 inline const int32_t kBadCandidateId = -12345;
 class MozcConnectionInterface;
@@ -52,6 +54,7 @@ class KeyEventHandler;
 class MozcEngine;
 
 class MozcState : public InputContextProperty {
+    friend class ::Nicola::Nicola;
  public:
   // This constructor is used by unittests.
   MozcState(InputContext* ic, MozcEngine* engine);
@@ -159,6 +162,8 @@ class MozcState : public InputContextProperty {
   std::string url_;  // URL to be opened by a browser.
   std::string description_;
   std::string title_;
+  // [MYCHANGE]
+  Nicola::Nicola nicola_handler_;
 };
 
 }  // namespace fcitx

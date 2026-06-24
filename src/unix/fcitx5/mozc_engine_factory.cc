@@ -73,7 +73,7 @@ class MozcEngineFactory : public AddonFactory {
 }  // namespace fcitx
 
 #ifdef FCITX_ADDON_FACTORY_V2
-FCITX_ADDON_FACTORY_V2(mozc, fcitx::MozcEngineFactory)
+FCITX_ADDON_FACTORY_V2(nicola, fcitx::MozcEngineFactory)
 #else
 FCITX_ADDON_FACTORY(fcitx::MozcEngineFactory)
 #endif

@@ -59,10 +59,13 @@
 #include "unix/fcitx5/mozc_response_parser.h"
 #include "unix/fcitx5/surrounding_text_util.h"
 
+#include "unix/fcitx5/nicola.h"
+
 namespace fcitx {
 
 MozcState::MozcState(InputContext* ic, MozcEngine* engine)
-    : ic_(ic), engine_(engine), handler_(std::make_unique<KeyEventHandler>()) {
+    : ic_(ic), engine_(engine), handler_(std::make_unique<KeyEventHandler>()),
+      nicola_handler_(Nicola::Nicola(this, engine->instance()->eventLoop(), ic)) {
   // mozc::Logging::SetVerboseLevel(1);
   MOZC_VLOG(1) << "MozcState created.";
 
@@ -204,6 +207,9 @@ bool MozcState::TrySendRawCommand(const mozc::commands::SessionCommand& command,
 // This function is called when users press or release a key.
 bool MozcState::ProcessKeyEvent(KeySym sym, uint32_t keycode, KeyStates state,
                                 bool layout_is_jp, bool is_key_up) {
+    if (nicola_handler_.ProcessKeyEvent(sym, keycode, state, preedit_method_,
+                layout_is_jp, is_key_up)) return true;
+
   auto normalized_key = Key(sym, state).normalize();
   if (displayUsage_) {
     if (is_key_up) {
