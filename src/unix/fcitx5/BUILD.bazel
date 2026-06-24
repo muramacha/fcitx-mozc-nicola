@@ -139,6 +139,7 @@ mozc_cc_library(
     hdrs = [
         "fcitx_key_event_handler.h",
         "fcitx_key_translator.h",
+        "nicola.h",
     ],
     deps = [
         "//base:port",
@@ -147,6 +148,7 @@ mozc_cc_library(
         "//protocol:config_cc_proto",
         "@com_google_absl//absl/log:check",
         "@fcitx5",
+        "//unix/fcitx5:nicola",
     ],
 )
 
@@ -176,5 +178,23 @@ mozc_cc_binary(
     linkstatic = 1,
     deps = [
         ":mozc_engine",
+    ],
+)
+
+mozc_cc_library(
+    name = "nicola",
+    srcs = [
+        "nicola.cc"
+    ],
+    hdrs = [
+        "mozc_client_interface.h",
+        "fcitx_key_event_handler.h",
+        "fcitx_key_translator.h",
+        "mozc_state.h",
+        "nicola.h",
+    ],
+    deps = [
+        "@fcitx5",
+        "//protocol:commands_cc_proto",
     ],
 )
