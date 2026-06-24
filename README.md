@@ -11,10 +11,10 @@ Install
 -------------
 1. Download and extract the latest binaries from the [Release](https://github.com/muramacha/fcitx-mozc-nicola/releases) pages.
 
-2. Check the installation paths for `fcitx5-mozc.so` and `mozc_server` on your system.
-**Example:**
-**Ubuntu / Debian:** `/usr/lib/x86_64-linux-gnu/fcitx5/` and `/usr/lib/mozc/`
-**Arch Linux:** `/usr/lib/fcitx5/` and `/usr/lib/mozc/`
+2. Check the installation paths for `fcitx5-mozc.so` and `mozc_server` on your system.<BR>
+**Example:**<BR>
+**Ubuntu / Debian:** `/usr/lib/x86_64-linux-gnu/fcitx5/` and `/usr/lib/mozc/`<BR>
+**Arch Linux:** `/usr/lib/fcitx5/` and `/usr/lib/mozc/`<BR>
 
 3. Rename and copy the files to correct paths like below:
 ```bash
