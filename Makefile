@@ -11,5 +11,8 @@ $(BUILD_DIR)/Makefile:
 	@mkdir -p build
 	cp in_build_dir.mk $@
 
+build:
+	$(MAKE) -C build $@
+
 clean:
 	rm -rf $(BUILD_DIR)
