@@ -1,7 +1,11 @@
-VPATH := ../src/bazel-bin/server ../src/bazel-bin/unix/fcitx5 ../src/unix/fcitx5
+B_BIN := ../src/bazel-bin
+FMOZC_SO := $(B_BIN)/unix/fcitx5/fcitx5-mozc.so
+MSERVER := $(B_BIN)/server/mozc_server
+FCONF := ../src/unix/fcitx5
 
 FCITX_PATH := /usr/share/fcitx5
 SERVER_PATH := /usr/lib/mozc
+
 OUT_FILES := mozc_server nicola.so nicola.conf nicola-addon.conf Makefile
 RELEASE_DIR := fcitx_mozc_nicola
 RELEASE_FILES := $(addprefix $(RELEASE_DIR)/, $(OUT_FILES))
@@ -33,7 +37,9 @@ cleanrelease:
 	rm -rf fcitx_mozc_nicola.tar.gz
 
 # BUILD
-build: fcitx5-mozc.so mozc_server
+$(FMOZC_SO) $(MSERVER): build
+
+build: 
 	cd ../src && \
 		bazelisk build -c opt --copt=-fPIC --config oss_linux --action_env=ANDROID_HOME="" --action_env=ANDROID_SDK_ROOT="" unix/fcitx5:fcitx5-mozc.so server:mozc_server
 
@@ -68,19 +74,14 @@ $(FCITX_PATH)/inputmethod/nicola.conf: nicola.conf
 	# /INSTALL
 
 # COPY TO build/fcitx_mozc_nicola/
-NON_RENAME := $(filter-out %/nicola.so %/Makefile, $(RELEASE_FILES))
-RENAME := $(filter %/nicola.so, $(RELEASE_FILES))
-
-$(NON_RENAME) : $(RELEASE_DIR)/%: %
-	mkdir -p $(RELEASE_DIR)
-	cp $< $@
-
-$(RELEASE_DIR)/nicola.so: fcitx5-mozc.so
+$(RELEASE_DIR)/nicola.so: $(FMOZC_SO)
+$(RELEASE_DIR)/mozc_server: $(MSERVER)
+$(RELEASE_DIR)/nicola-addon.conf :$(FCONF)/nicola-addon.conf
+$(RELEASE_DIR)/nicola.conf :$(FCONF)/nicola.conf
 $(RELEASE_DIR)/Makefile: ../release_install.mk
 
-$(RELEASE_DIR)/nicola.so $(RELEASE_DIR)/Makefile:
-	mkdir -p $(RELEASE_DIR)
+$(RELEASE_FILES):
+	mkdir -p $(dir $@)
 	cp $< $@
-
 # /COPY TO build
 
