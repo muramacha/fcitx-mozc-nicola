@@ -76,5 +76,5 @@ MODULE.bazel.lock
 /src/android/tests/AndroidManifest.xml
 /src/android/tests/libs/
 
-/release/
+/build/
 compile_commands.json
