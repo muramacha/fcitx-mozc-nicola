@@ -15,7 +15,7 @@ DEST_SO        := $(SO_DIR)/nicola.so
 DEST_CONF      := $(FCITX_DIR)/inputmethod/nicola.conf
 DEST_SERVER    := /usr/lib/mozc/mozc_server
 DEST_ADDONCONF := $(FCITX_DIR)/addon/nicola.conf
-DESTS          := $(DEST_SO) $(DEST_CONF) $(DEST_ADDONCONF)
+DESTS          := $(DEST_SO) $(DEST_CONF) $(DEST_ADDONCONF) $(DEST_SERVER)
 
 .PHONY: install uninstall
 
