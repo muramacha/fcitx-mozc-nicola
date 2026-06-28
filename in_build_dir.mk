@@ -6,54 +6,43 @@ FCONF    := ../src/unix/fcitx5
 FCITX_PATH  := /usr/share/fcitx5
 SERVER_PATH := /usr/lib/mozc
 
+ID            := $(shell . /etc/os-release && echo $$ID)
+VERSION_ID    := $(shell . /etc/os-release && echo $${VERSION_ID:-rolling})
 OUT_FILES     := mozc_server nicola.so nicola.conf nicola-addon.conf Makefile
-RELEASE_DIR   := fcitx_mozc_nicola
+RELEASE_DIR   := fcitx_mozc_nicola-$(ID)-$(VERSION_ID)
 RELEASE_FILES := $(addprefix $(RELEASE_DIR)/, $(OUT_FILES))
 
-ifndef SO_DIR
-	ifneq ($(wildcard /usr/lib/x86_64-linux-gnu/fcitx5/),)
-		SO_DIR := /usr/lib/x86_64-linux-gnu/fcitx5
-	else ifneq ($(wildcard /usr/lib64/fcitx5/),)
-		SO_DIR := /usr/lib64/fcitx5
-	else ifneq ($(wildcard /usr/lib/fcitx5/),)
-		SO_DIR := /usr/lib/fcitx5
-	else
-		$(error [ERROR] fcitx5 instalation path not found. Abort.)
-	endif
-endif
-
-SO_DEST         := $(SO_DIR)/nicola.so 
+DETECTED_SO_DIR := $(firstword $(wildcard /usr/lib/x86_64-linux-gnu/fcitx5 /usr/lib64/fcitx5 /usr/lib/fcitx5))
+SO_DIR          ?= $(DETECTED_SO_DIR)
+SO_DEST         := $(SO_DIR)/nicola.so
 SERVER_DEST     := $(SERVER_PATH)/mozc_server
 CONF_DEST       := $(FCITX_PATH)/inputmethod/nicola.conf
 ADDON_CONF_DEST := $(FCITX_PATH)/addon/nicola.conf
 DESTS           := $(SO_DEST) $(SERVER_DEST) $(CONF_DEST) $(ADDON_CONF_DEST)
 
 .PHONY: build install release so server all uninstall
-.DEFAULT_GOAL := all
-
-build_dir:
-	mkdir -p build
+.DEFAULT_GOAL := build
 
 all: build release install
-
-clean:
-	rm -rf *
 
 uninstall:
 	sudo rm $(DESTS)
 
 cleanrelease:
-	rm -rf fcitx_mozc_nicola.tar.gz
+	rm -rf $(RELEASE_DIR).tar.gz $(RELEASE_DIR) Makefile
 
 # BUILD
-$(FMOZC_SO) $(MSERVER): build
 
-build: 
-	cd ../src && bazelisk build -c opt --copt=-fPIC --config oss_linux --action_env=ANDROID_HOME="" --action_env=ANDROID_SDK_ROOT="" unix/fcitx5:fcitx5-mozc.so server:mozc_server
+build: $(FMOZC_SO) $(MSERVER)
+$(FMOZC_SO):
+	cd ../src && bazelisk build -c opt --copt=-fPIC --config oss_linux --action_env=ANDROID_HOME="" --action_env=ANDROID_SDK_ROOT="" unix/fcitx5:fcitx5-mozc.so
 
-release: fcitx_mozc_nicola.tar.gz
+$(MSERVER):
+	cd ../src && bazelisk build -c opt --copt=-fPIC --config oss_linux --action_env=ANDROID_HOME="" --action_env=ANDROID_SDK_ROOT="" server:mozc_server
 
-fcitx_mozc_nicola.tar.gz: $(RELEASE_FILES)
+release: $(RELEASE_DIR).tar.gz
+
+$(RELEASE_DIR).tar.gz: $(RELEASE_FILES)
 	tar --owner 0 --group 0 -czf $@ $(RELEASE_DIR)
 	# /BUILD
 
@@ -64,13 +53,18 @@ so:     $(SO_DEST) ## install addon
 conf:   $(CONF_DEST) $(ADDON_CONF_DEST)
 server: $(SERVER_DEST)
 
-$(SO_DEST):         $(FMOZC_SO)
-$(CONF_DEST):       $(FCONF)/nicola.conf 
-$(SERVER_DEST):     $(MSERVER)
-$(ADDON_CONF_DEST): $(FCONF)/nicola-addon.conf 
+$(SO_DEST): $(FMOZC_SO)
+	@if [ -z "$SO_DIR" ]; then echo "[ERROR]" fcitx path not found.; exit 1; fi
+	sudo install -Dm755 $< $@
 
-$(DESTS):
-	sudo install -D $< $@
+$(SERVER_DEST): $(MSERVER)
+	sudo install -Dm755 $< $@
+
+$(CONF_DEST): $(FCONF)/nicola.conf
+	sudo install -Dm644 $< $@
+
+$(ADDON_CONF_DEST): $(FCONF)/nicola-addon.conf
+	sudo install -Dm644 $< $@
 
 # COPY TO build/fcitx_mozc_nicola/
 $(RELEASE_DIR)/Makefile:           ../release_install.mk

@@ -14,5 +14,8 @@ $(BUILD_DIR)/Makefile:
 build:
 	$(MAKE) -C build $@
 
-clean:
+cleanbuild:
 	rm -rf $(BUILD_DIR)
+
+cleanbazel:
+	rm src/bazel-*
