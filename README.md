@@ -18,19 +18,19 @@ sudo make install
 Fedora:
 ```bash
 curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-fedora-44.tar.gz | tar xzf -
-cd fcitx_mozc_nicola-ubuntu-26.04
+cd fcitx_mozc_nicola-fedora-44
 sudo make install
 ```
 Arch:
 ```bash
 curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-arch-rolling.tar.gz | tar xzf -
-cd fcitx_mozc_nicola-ubuntu-26.04
+cd fcitx_mozc_nicola-arch-rolling
 sudo make install
 ```
 Other distros:
 ```bash
 curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar xzf -
-cd fcitx_mozc_nicola-ubuntu-24.04
+cd fcitx_mozc_nicola-ubuntu-22.04
 sudo make install
 ```
 ### Troubleshooting for Other Distributions.
