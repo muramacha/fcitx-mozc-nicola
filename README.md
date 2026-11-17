@@ -11,27 +11,31 @@ Install
 ### 1. Download and extract the files from the [latest release](https://github.com/muramacha/fcitx-mozc-nicola/releases)
 Ubuntu / Debian
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-26.04.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-26.04.tar.gz | tar -xz
+cd fcitx_mozc_nicola-ubuntu-26.04
 ```
 
 Fedora
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-fedora-44.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-fedora-44.tar.gz | tar -xz
+cd fcitx_mozc_nicola-fedora-44
 ```
 
 Arch
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-arch-rolling.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-arch-rolling.tar.gz | tar -xz
+cd fcitx_mozc_nicola-arch-rolling
 ```
 
 Others (use the Ubuntu 24.04 build)
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar -xz
+cd fcitx_mozc_nicola-ubuntu-24.04
 ```
 
 ### 2. Install
 ```bash
-cd fcitx-mozc-nicola && make install
+make install
 ```
 
 Build

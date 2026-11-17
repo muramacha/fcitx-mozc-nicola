@@ -11,27 +11,31 @@
 ### 1 [最新のリリース](https://github.com/muramacha/fcitx-mozc-nicola/releases)からファイルたちをダウンロードし展開
 Ubuntu / Debian
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-26.04.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-26.04.tar.gz | tar -xz
+cd fcitx_mozc_nicola-ubuntu-26.04
 ```
 
 Fedora
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-fedora-44.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-fedora-44.tar.gz | tar -xz
+cd fcitx_mozc_nicola-fedora-44
 ```
 
 Arch
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-arch-rolling.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-arch-rolling.tar.gz | tar -xz
+cd fcitx_mozc_nicola-arch-rolling
 ```
 
 その他（Ubuntu 24.04用を使用する）
 ```bash
-curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar -zf
+curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar -xz
+cd fcitx_mozc_nicola-ubuntu-24.04
 ```
 
 ### 2 インストール
 ```bash
-cd fcitx-mozc-nicola && make install
+make install
 ```
 
 ビルド
