@@ -8,22 +8,37 @@
 
 インストール
 ----------------------
-1. [最新のリリース](https://github.com/muramacha/fcitx-mozc-nicola/releases)からファイルたちをダウンロードし、展開してください。
-
-2. ご自身のシステムにおける`fcitx5-mozc.so`と`mozc_server`のインストール先を確認してください。<BR>
-例:<BR>
-**Ubuntu / Debian:** `/usr/lib/x86_64-linux-gnu/fcitx5/` と `/usr/lib/mozc/`<BR>
-**Arch Linux:** `/usr/lib/fcitx5/` と `/usr/lib/mozc/`<BR>
-
-3. 必要に応じて名前を変更し、ご自身のシステムにあったパスにファイルを配置してください。
+### 1 [最新のリリース](https://github.com/muramacha/fcitx-mozc-nicola/releases)からファイルたちをダウンロードし展開
+Ubuntu / Debian
 ```bash
-# プラグイン（.so）をリネームしてコピー
-sudo cp fcitx5-mozc.so /usr/lib/x86_64-linux-gnu/fcitx5/nicola.so
+curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-26.04.tar.gz | tar -zf
+```
 
-# mozc_server を上書きまたは配置
-sudo cp mozc_server /usr/lib/mozc
+Fedora
+```bash
+curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-fedora-44.tar.gz | tar -zf
+```
 
-# 設定ファイルをリネームしてコピー
-sudo cp nicola.conf /usr/share/fcitx5/inputmethod/
-sudo cp nicola-addon.conf /usr/share/fcitx5/addon/nicola.addon
+Arch
+```bash
+curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-arch-rolling.tar.gz | tar -zf
+```
+
+その他（Ubuntu 24.04用を使用する）
+```bash
+curl -OL https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar -zf
+```
+
+### 2 インストール
+```bash
+cd fcitx-mozc-nicola && make install
+```
+
+ビルド
+------------------
+```bash
+git clone https://github.com/muramacha/fcitx-mozc-nicola
+cd fcitx-mozc-nicola
+make
+make install
 ```
