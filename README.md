@@ -1,14 +1,14 @@
-Fcitx-mozc-nicola
-============================
-Language: [English] | [日本語](README.ja.md)
+このソフトについて
+=====================
+言語: [English](README.en.md) | [日本語]
 
-A fork of [fcitx5-mozc](https://github.com/fcitx/mozc) that adds support for Oyayubi-shift (Nicola) layout.
-> **Warning**
-> This addon ships its own `mozc_server`, which conflicts with the upstream fcitx5-mozc installed via package managers due to differences in the `mozc_server` version.
+親指シフト(Nicola 配列)の機能を加えた、[fcitx5-mozc](https://github.com/fcitx/mozc)のフォークです。
+> **警告**
+> このアドオンは独自のmozc_serverを含んでおり、そのバージョンの違いからパッケージマネージャなどでインストールした本家fcitx5-mozcと競合します。
 
-Install
--------------
-### 1. Download and extract the files from the [latest release](https://github.com/muramacha/fcitx-mozc-nicola/releases)
+インストール
+----------------------
+### 1 [最新のリリース](https://github.com/muramacha/fcitx-mozc-nicola/releases)からファイルたちをダウンロードし展開
 Ubuntu / Debian
 ```bash
 curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-26.04.tar.gz | tar -xz
@@ -27,18 +27,18 @@ curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/
 cd fcitx_mozc_nicola-arch-rolling
 ```
 
-Others (use the Ubuntu 24.04 build)
+その他（Ubuntu 24.04用を使用する）
 ```bash
 curl -L https://github.com/muramacha/fcitx-mozc-nicola/releases/latest/download/fcitx_mozc_nicola-ubuntu-24.04.tar.gz | tar -xz
 cd fcitx_mozc_nicola-ubuntu-24.04
 ```
 
-### 2. Install
+### 2 インストール
 ```bash
 make install
 ```
 
-Build
+ビルド
 ------------------
 ```bash
 git clone https://github.com/muramacha/fcitx-mozc-nicola
